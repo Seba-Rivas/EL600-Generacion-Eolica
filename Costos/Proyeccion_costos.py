@@ -7,11 +7,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# Lo primero es estraer los datos de los archivos .tsv:
+# Lo primero es estraer los datos de los archivos .tsv y .csv:
 
+# Partimos con los costos
 url_PA = 'https://raw.githubusercontent.com/Seba-Rivas/EL600-Generacion-Eolica/main/Costos/Pan_de_Azucar_220kV.tsv'
 df_PA = pd.read_csv(url_PA, sep = '\t',header=0)
 drp = df_PA.index[df_PA['hora']==25].tolist() # Sacamos la hora 25
 df_PA.drop(drp, axis=0, inplace = True) 
-df_dolar = df_PA.iloc[:,[4]] # Apartamos al columna de costos en dolares
+df_dolar = df_PA.iloc[:,[4]] # Apartamos al columna de costos en dolares}
 
+# Continuamos con el viento:
+url_wind = 'https://raw.githubusercontent.com/Seba-Rivas/EL600-Generacion-Eolica/main/recon_B6RS7S.csv'
+df_wind = pd.read_csv(url_wind, sep='[\s+,]' , engine='python')
